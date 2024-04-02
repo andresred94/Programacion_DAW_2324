@@ -1,23 +1,14 @@
 package empleadoejercicio;
 
 public class Directivo extends Empleado{
-	// atributos
 	
-	// constructores
 	public Directivo () {}
 	public Directivo(String nombreIngresado) {
-		setNombre(nombreIngresado);
+		super(nombreIngresado);
 	}
 
 	@Override
 	public String toString() {
-		return "Empleado " + getNombre() + " -> Directivo";
+		return super.toString() + " -> Directivo";
 	}
-
-	
-
-	
-	
-	
-	
 }// fin-class Directivo

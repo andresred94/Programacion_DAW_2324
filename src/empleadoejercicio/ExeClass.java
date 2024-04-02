@@ -3,7 +3,6 @@ package empleadoejercicio;
 public class ExeClass {
 	public static void main(String[] args) {
 		Empleado e1 = new Empleado("Rafa");
-		System.out.printf("%s%n" , e1.getNombre());
 		System.out.printf("%s%n" , e1.toString());
 		
 		Directivo d1 = new Directivo("Mario");
@@ -17,7 +16,7 @@ public class ExeClass {
 		
 		Tecnico tec1 = new Tecnico("Pablo");
 		System.out.printf("%s%n" , tec1.toString());
-		;
+		
 	}
 
 }
