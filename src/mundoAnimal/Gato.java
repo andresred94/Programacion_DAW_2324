@@ -1,6 +1,6 @@
 package mundoAnimal;
 
-public class Gato extends Animal{
+public class Gato extends Animales{
 	
 	@Override
 	public void vacunar() {

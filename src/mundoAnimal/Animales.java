@@ -1,6 +1,6 @@
 package mundoAnimal;
 
-public abstract class Animal {
+public abstract class Animales {
 	// -->[ ATRIBUTOS ]<--
 	private String nombre;
 	private String raza;
@@ -42,6 +42,13 @@ public abstract class Animal {
 	
 	public abstract void hacerRuido();
 	
-	public boolean hacerCaso() {return true;}	
+	public boolean hacerCaso() {return true;}
+	
+	@Override
+	public String toString() {
+		return "Animales [nombre=" + nombre + ", raza=" + raza + ", peso=" + peso + ", color=" + color + "]";
+	}	
+	
+	
 	
 }// fin-class Mascota

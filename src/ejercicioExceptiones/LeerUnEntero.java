@@ -1,6 +1,5 @@
 package ejercicioExceptiones;
 import misExcepciones.*;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LeerUnEntero {

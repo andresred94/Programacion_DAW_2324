@@ -44,7 +44,7 @@ public class ExeCuentas {
 			case 2:
 				ArrayList<String> nombresColumnas2 = new ArrayList<>();
 				String tabla2 = "cuentas";
-				// nombresColumnas2.add("*");
+				//nombresColumnas2.add("*");
 				nombresColumnas2.add("id");
 				nombresColumnas2.add("saldo");
 				c1.mostrarSaldos(nombresColumnas2, tabla2);

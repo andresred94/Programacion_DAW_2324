@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class LectorDArchivos {
 	public void leerArchivo() throws FileNotFoundException, IOException {
-		File archivoFile = new File("G:\\archivos_txt\\holamundo.txt");
+		File archivoFile = new File("\\..\\archivos_txt\\holamundo.txt");
 		FileReader fReader = new FileReader(archivoFile);
 		BufferedReader bf = new BufferedReader(fReader);
 		String linea;
@@ -16,20 +16,7 @@ public class LectorDArchivos {
 		while ( (linea = bf.readLine()) != null) {
 			System.out.println(linea);
 		}
-
+		bf.close();
 	}
-
-	public void leerArchivo2() {
-		try {
-			leerArchivo();
-		} catch (FileNotFoundException fe) {
-			fe.getMessage();
-		} catch(IOException io) {
-			System.out.println("Archivo_controlado");
-		} finally {
-			System.out.println("Programa continuará...");
-		}
-
-	}// fin leerArchivo
 
 }// fin-class LectorDArchivos

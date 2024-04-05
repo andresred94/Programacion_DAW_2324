@@ -2,8 +2,6 @@ package ejercicioExceptiones;
 
 import java.util.Scanner;
 
-import javax.swing.text.Position;
-
 public class AdivinarCantPos {
 	static Scanner lector = new Scanner(System.in);
 
@@ -24,7 +22,7 @@ public class AdivinarCantPos {
 					System.out.printf("¿ Qué posición del vector quieres ver ? [Introduce un valor negativo para salir] = ");
 					pos = Integer.parseInt(lector.nextLine());
 					if (pos >= 0) {
-						System.out.printf("Posisición %d: num - %d%n", pos, numsEnteros[pos]);
+						System.out.printf("Posisición %d: num - %d%n", pos + 1, numsEnteros[pos]);
 					}
 
 				} while (pos >= 0);

@@ -4,11 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLWarning;
 import java.util.ArrayList;
-
-import com.mysql.cj.x.protobuf.MysqlxSql.StmtExecute;
-import com.mysql.cj.xdevapi.Statement;
 
 public class ConexBdDMysql {
 

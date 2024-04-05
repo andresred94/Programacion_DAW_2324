@@ -1,6 +1,6 @@
 package mundoAnimal;
 
-public class Perro extends Animal{
+public class Perro extends Animales{
 	@Override
 	public void vacunar() {
 		System.out.println("Soy un perro vacunado.");
