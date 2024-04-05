@@ -5,6 +5,8 @@ public class Persona {
 	private String apellido;
 	private int edad;
 	// primer commit en Persona
+	// segundo commit en Persona
+
 	
 	public Persona(String nombre, String apellido, int edad) {
 		super();
