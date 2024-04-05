@@ -4,8 +4,7 @@ public class Persona {
 	private String nombre ;
 	private String apellido;
 	private int edad;
-	
-	
+	// primer commit en Persona
 	
 	public Persona(String nombre, String apellido, int edad) {
 		super();
