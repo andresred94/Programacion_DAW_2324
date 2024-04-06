@@ -8,8 +8,11 @@ public class ExeProgram {
 		//primer commit en ExeProgram
 		//segundo commit en ExeProgram
 		//tercer commit en ExeProgram
-		// primera instantanea de la rama desarrollo
-		// segunda instantanea de la rama desarrollo
 		
+		// primera instantanea de la rama desarrollo
+		// segunda instantanea rama_testeo
+		
+		// Instantanea después de corregir los errores
+		// entre el merge de la Rama testeo hacia la rama desarrollo
 	}
 }
