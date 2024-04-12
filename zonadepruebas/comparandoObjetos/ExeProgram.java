@@ -35,7 +35,7 @@ public class ExeProgram {
 		
 		System.out.println("Ordenador por nombre:");
 		socios.sort(new CompararNombreSocio());
-		
+		//
 		for (int i = 0; i < socios.size(); i++) {
 			System.out.println(socios.get(i).toString());
 		}
