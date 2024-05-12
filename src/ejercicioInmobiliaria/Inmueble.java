@@ -1,8 +1,13 @@
 package ejercicioInmobiliaria;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Inmueble {
+public abstract class Inmueble implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static ArrayList <Inmueble> ventas = new ArrayList();
 	public static ArrayList <Inmueble> alquileres = new ArrayList();
 	private String ubicacion;
@@ -11,9 +16,7 @@ public abstract class Inmueble {
 	private double tamanio;
 	private TP_INMBL tipo;
 	enum TP_INMBL {SUPERFICIE,CONSTRUCCION}	
-	
-	
-	
+		
 	public static void setVentas(ArrayList<Inmueble> ventas) {
 		Inmueble.ventas = ventas;
 	}

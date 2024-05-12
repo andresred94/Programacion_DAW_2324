@@ -4,7 +4,6 @@ public class Loro extends Aves{
 
 	public Loro(String nom, int age, String state, String fnacimiento, TP_PICO tpico, boolean esvolador) {
 		super(nom, age, state, fnacimiento,tpico,esvolador);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

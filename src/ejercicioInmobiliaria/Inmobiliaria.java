@@ -1,5 +1,13 @@
 package ejercicioInmobiliaria;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+import coleccionesListasEje7.Jugadores;
 import ejercicioInmobiliaria.Construccion.*;
 import ejercicioInmobiliaria.PlzGaraje.*;
 import ejercicioInmobiliaria.Solar.*;
@@ -59,17 +67,38 @@ public class Inmobiliaria extends Inmueble{
 		Local l2 = new Local("Portugal",30,TP_INMBL.CONSTRUCCION,TP_CNSTRCN.SGND_MANO,2000);
 		l2.añadeAlquilerInmueble(l2);
 		
-	
-		double precio = 5000000;
-		System.out.printf("(Solares / Viviendas) en venta con precio inferior a %.2f :%n" , precio);
-		ex1.inmueblesVenta(precio);
-		System.out.println();
-		double superficie = 10;
-		System.out.printf("(Locales) para alquilar de segunda mano con una superficie superior a %.2f:%n" , superficie);
-		ex1.localesSegundaMano(superficie);
-		System.out.println();
-		System.out.println("(Solares) en zona rústica que están en venta.");
-		ex1.solaresRusticos();
+		String nombreArchivo =  "inmuebles_venta.txt";
+		String ruta = "\\..\\archivos\\nombArchi";
+		String rutaArchivo = ruta.replaceAll("nombArchi", nombreArchivo);
+
+		// Guardar objetos en un fichero
+		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(rutaArchivo));
+				ObjectInputStream in = new ObjectInputStream(new FileInputStream(rutaArchivo)))	{
+			
+			out.writeObject(Inmueble.ventas);
+			
+			ArrayList <Inmueble> copia_ventas = new ArrayList<Inmueble>();
+
+//		copia_ventas = (ArrayList <Inmueble>) in.readObject();
+			
+			for (Inmueble Inmu : copia_ventas) {
+				System.out.println(Inmu.toString());
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+//		double precio = 5000000;
+//		System.out.printf("(Solares / Viviendas) en venta con precio inferior a %.2f :%n" , precio);
+//		ex1.inmueblesVenta(precio);
+//		System.out.println();
+//		double superficie = 10;
+//		System.out.printf("(Locales) para alquilar de segunda mano con una superficie superior a %.2f:%n" , superficie);
+//		ex1.localesSegundaMano(superficie);
+//		System.out.println();
+//		System.out.println("(Solares) en zona rústica que están en venta.");
+//		ex1.solaresRusticos();
 		
 		
 	}

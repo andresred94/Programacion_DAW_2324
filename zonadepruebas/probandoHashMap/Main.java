@@ -13,7 +13,7 @@ public class Main {
 
 		// Creamos un TreeMap de String-String para representar un diccionario
 		Map<String, String> diccionario = new TreeMap<>();
-
+		
 		// Añadimos palabras al diccionario
 		diccionario.put("manzana", "Fruta comestible con piel roja o amarilla y carne blanca");
 		diccionario.put("pera", "Fruta comestible con piel suave y carne jugosa");

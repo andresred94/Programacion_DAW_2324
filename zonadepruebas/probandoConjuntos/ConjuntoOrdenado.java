@@ -15,8 +15,6 @@ public class ConjuntoOrdenado {
 		
 		while (it.hasNext()) {
 			System.out.println(it.next());
-		}
-		
-	}
-
-}
+		}		
+	}// fin main
+}//fin-class ConjuntoOrdenado 

@@ -1,6 +1,12 @@
 package mundoAnimal;
 
-public abstract class Animales {
+import java.io.Serializable;
+
+public abstract class Animales implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// -->[ ATRIBUTOS ]<--
 	private String nombre;
 	private String raza;

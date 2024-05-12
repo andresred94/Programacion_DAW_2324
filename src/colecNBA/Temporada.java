@@ -123,7 +123,7 @@ public class Temporada {
 	}	
 	
 	public void ordenCiudadNombre() {
-		LinkedList listaOrdenada = new LinkedList();
+		LinkedList <Jugador> listaOrdenada = new LinkedList <Jugador> ();
 		listaOrdenada.addAll(lista);
 		for (int i = 0; i < listaOrdenada.size(); i++) {
 			System.out.println(listaOrdenada.get(i).toString());
