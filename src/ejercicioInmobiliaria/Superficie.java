@@ -1,6 +1,10 @@
 package ejercicioInmobiliaria;
 
 public abstract class Superficie extends Inmueble {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private double preciomCuadrado;
 	private String pTotal;
 	private TP_SPRFC tipoSup;
@@ -27,16 +31,16 @@ public abstract class Superficie extends Inmueble {
 	}
 
 
-	public Superficie(String ubi, double mCuadrados, TP_INMBL inmu , TP_SPRFC tipo_sup, double pmetro) {
-		super(ubi, mCuadrados, inmu);
+	public Superficie(TP_INMBL inmu, TP_SPRFC tipo_sup, String ubi, double mCuadrados , double pmetro) {
+		super(inmu,ubi, mCuadrados);
 		preciomCuadrado = pmetro;
 		pTotal = String.format("%.2f",precio());
 		super.setpTotal(pTotal);
 		tipoSup = tipo_sup;
 	}
 	
-	public Superficie(String ubi, double mCuadrados, TP_INMBL inmu , TP_SPRFC tipo_sup) {
-		super(ubi, mCuadrados, inmu);
+	public Superficie(TP_INMBL inmu, TP_SPRFC tipo_sup,String ubi, double mCuadrados ) {
+		super(inmu,ubi, mCuadrados);
 		tipoSup = tipo_sup;
 	}
 	
@@ -45,11 +49,6 @@ public abstract class Superficie extends Inmueble {
 		return (preciomCuadrado * getTamanio());
 
    }
-
-	@Override
-	public String toString() {
-		return tipoSup+"[Ubicacion: "+super.getUbicacion()+" Tamaño: "+super.getTamanio()+"preciomCuadrado: "+ preciomCuadrado +"]";
-	}
 
 	
 }

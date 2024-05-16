@@ -8,8 +8,8 @@ public abstract class Inmueble implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public static ArrayList <Inmueble> ventas = new ArrayList();
-	public static ArrayList <Inmueble> alquileres = new ArrayList();
+	public static ArrayList <Inmueble> ventas = new ArrayList <Inmueble>();
+	public static ArrayList <Inmueble> alquileres = new ArrayList <Inmueble>();
 	private String ubicacion;
 	private String pTotal;
 	private double precioTdecimal;
@@ -66,22 +66,23 @@ public abstract class Inmueble implements Serializable {
 		this.tamanio = tamanio;
 	}
 		
-	public TP_INMBL getTipo() {
+	public TP_INMBL getTipo_inmueble() {
 		return tipo;
 	}
 	
 	public Inmueble() {}
 
-	public Inmueble(String ubi, double mCuadrados, TP_INMBL inmu ) {
+	public Inmueble(TP_INMBL inmu, String ubi, double mCuadrados  ) {
+		tipo = inmu;
 		ubicacion = ubi;
 		tamanio = mCuadrados;
-		tipo = inmu;
+		
 	}
 	
-	public Inmueble(String ubi, double mCuadrados, TP_INMBL inmu, double precioTotal ) {
+	public Inmueble(TP_INMBL inmu, String ubi, double mCuadrados,  double precioTotal ) {
+		tipo = inmu;
 		ubicacion = ubi;
 		tamanio = mCuadrados;
-		tipo = inmu;
 		precioTdecimal = precioTotal;
 	}
 	

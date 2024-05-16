@@ -1,34 +1,35 @@
 package ejercicioInmobiliaria;
 
 public abstract class Construccion extends Inmueble{
-	private TP_CNSTRCN tipoCons;
-	enum TP_CNSTRCN {NUEVA,SGND_MANO}
+	private EST_CNSTRCN estadoCons;
+	private TP_CNSTRCN tipo_Cons;
+	enum TP_CNSTRCN {LOCAL,VIVIENDA};
+	enum EST_CNSTRCN {NUEVO,SGND_MANO}
 	
-	public TP_CNSTRCN getTipoCons() {
-		return tipoCons;
+	public EST_CNSTRCN getEstadoCons() {
+		return estadoCons;
 	}
 
-	public void setTipoCons(TP_CNSTRCN tipoCons) {
-		this.tipoCons = tipoCons;
+	public void setEstadoCons(EST_CNSTRCN estadoCons) {
+		this.estadoCons = estadoCons;
+	}
+
+	public TP_CNSTRCN getTipo_Cons() {
+		return tipo_Cons;
+	}
+
+	public void setTipo_Cons(TP_CNSTRCN tipo_Cons) {
+		this.tipo_Cons = tipo_Cons;
+	}
+
+	public void setTipoCons(EST_CNSTRCN tipoCons) {
+		this.estadoCons = tipoCons;
 	}
 	
-//	public double getPrecio() {
-//		return precio;
-//	}
-
-//	public void setPrecio(double precio) {
-//		this.precio = precio;
-//	}
-
-	public Construccion(String ubi, double mCuadrados, TP_INMBL inmu, TP_CNSTRCN tipo_cns, double precio) {
-		super(ubi, mCuadrados, inmu,precio);
-		//this.precio = precio;
-		tipoCons = tipo_cns;
-	}
-
-	@Override
-	public String toString() {
-		return tipoCons+"[Ubicacion: " + super.getUbicacion() +" Tamaño: "+super.getTamanio()+ "]";
+	public Construccion(TP_INMBL inmu,TP_CNSTRCN tipoConstruccion, EST_CNSTRCN estado_cons,String ubi, double mCuadrados, double precio ) {
+		super(inmu,ubi,mCuadrados,precio);
+		tipo_Cons = tipoConstruccion; 
+		estadoCons = estado_cons;
 	}
 
 	
