@@ -20,39 +20,10 @@ public class Inmobiliaria extends Inmueble{
 			   "%n1) mostrar todos los inmuebles.%n"
 			+ "2) añadir inmueble.%n"
 			+ "[ -1 para salir ]%n"
-			+ "escoge una opción y presiona la tecla [ENTER] = ");
+			+ "%nescoge una opción y presiona la tecla [ENTER] = ");
 	}		
 	public Inmobiliaria() {}
-	
-	public void inmueblesVenta(double precio) {
-		for (int i = 0; i < getVentas().size(); i++) {
-			
-			if (getVentas().get(i).getPrecioTdecimal() < precio) {
-				System.out.println(getVentas().get(i).toString());
-			}
-		}
-	}
-	
-	public void localesSegundaMano(double mCuadrados) {
-		for (int i = 0; i < getAlquileres().size(); i++) {
-			
-			if (getAlquileres().get(i).getTamanio() > mCuadrados) {
-				System.out.println(getAlquileres().get(i).toString());
-			}
-		}
-	}
-	
-	public void solaresRusticos() {
-		Solar s;
-		for (int i = 0; i < getVentas().size(); i++) {
-			if (getVentas().get(i) instanceof Solar ) {
-				s = (Solar) getVentas().get(i);
-				if ( s.getTipoS() == TP_SLR.RUSTICO ) {
-					System.out.println(s.toString());		
-				}				
-			}
-		}
-	}
+
 
 	public static void main(String[] args) {
 		Vivienda v1 = null;
@@ -60,7 +31,7 @@ public class Inmobiliaria extends Inmueble{
 		Solar s1 = null;
 		PlzGaraje p1 = null;
         Locale.setDefault(Locale.US);
-		ArrayList <Inmueble> datos_inmu = new ArrayList <Inmueble>();
+		TreeSet <Inmueble> datos_inmu = new TreeSet <Inmueble>();
 		Inmobiliaria ex1 = new Inmobiliaria();
 		
 		String nombreArchivo =  "inmuebles.dat";
@@ -71,12 +42,12 @@ public class Inmobiliaria extends Inmueble{
 //		System.out.println(ruta_escritura);
 		try (ObjectInputStream lecutra = new ObjectInputStream(new FileInputStream(fich_leer))) {
 			System.out.println("Leyendo datos...");
-			datos_inmu = (ArrayList <Inmueble>) lecutra.readObject();
+			datos_inmu = (TreeSet <Inmueble>) lecutra.readObject();
 			
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-        	System.out.println("No existe el fichero");
+        	System.err.println("El contenido del fichero está vacio.");
 		}
 		
 		
@@ -90,11 +61,11 @@ public class Inmobiliaria extends Inmueble{
 			case 1://mostrar todos los inmuebles
 				
 				System.out.print("Mostrando todos los inmuebles guardados...");
-				System.out.printf("%nHay %d inmuebles guardados.",datos_inmu.size());
-//				for (Inmueble s : datos_inmu) {
-//					System.out.println(s.toString());
-//				}
-				System.out.println(datos_inmu);
+				System.out.printf("%nHay %d inmuebles guardados.%n",datos_inmu.size());
+				for (Inmueble s : datos_inmu) {
+					System.out.println(s.toString());
+				}
+//				System.out.println(datos_inmu);
 				break;
 			case 2://añadir un inmueble
 				System.out.printf("¿Qué tipo de inmueble es? [Superficie / Construccion] = ");
@@ -167,10 +138,12 @@ public class Inmobiliaria extends Inmueble{
 								Integer n_plantas_in = Integer.parseInt(lector.nextLine());
 								// TODO piso nuevo
 								v1 = new Vivienda(TP_INMBL.CONSTRUCCION,TP_CNSTRCN.VIVIENDA,EST_CNSTRCN.NUEVO,ubi_in,tamanio_in,TP_VVND.PISO,n_hab_in,p_total_in,n_plantas_in);
-								if (datos_inmu.add(v1)) {
-									System.out.println("Piso añadido correctamente.");
-								} else {
-									System.err.println("No se ha podido añadir la vivienda.");
+								if (v1 instanceof Vivienda) {
+									if (datos_inmu.add(v1)) {
+										System.out.println("Piso añadido correctamente.");
+									} else {
+										System.err.println("No se ha podido añadir la vivienda.");
+									}
 								}
 								
 							}else if (estado_vivienda.equals("SEGUNDA MANO")) {
@@ -299,9 +272,12 @@ public class Inmobiliaria extends Inmueble{
 						}// garage = privado
 					}// inmueble -> Solar o Plaza de Garaje
 				}// inmueble -> Superficie
-			
-														
+			break;
+		case -1:
+			System.out.println("Saliendo...");
+				break;
 			default:
+				System.err.println("No has ingresado una opción válida.");
 				break;
 			}
 			

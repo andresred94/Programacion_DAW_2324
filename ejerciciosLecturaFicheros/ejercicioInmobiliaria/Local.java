@@ -1,8 +1,9 @@
 package ejercicioInmobiliaria;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
-public class Local extends Construccion implements Serializable,  Comparable <Local>{
+public class Local extends Construccion implements Serializable , Comparable <Inmueble>{
 
 	private static final long serialVersionUID = 1L;
 
@@ -17,12 +18,14 @@ public class Local extends Construccion implements Serializable,  Comparable <Lo
 	@Override
 	public String toString() {
 //		return "tipo_inmueble:"+getTipo_inmueble()+",inmueble:"+ getTipo_Cons()+",estado:" + getEstadoCons() + ",ubicacion: " + getUbicacion() + ",tamaño:"+ getTamanio() + ",precio:" + getPrecioTdecimal();
-		return String.format("%ntipo_inmueble:%s,inmueble:%s,estado:%s,ubicacion:%s,tamaño:%.2f,precio:%.2f%n",getTipo_inmueble(),getTipo_Cons(),getEstadoCons(),getUbicacion(),getTamanio(),getPrecioTdecimal());
-	}
-	@Override
-	public int compareTo(Local o) {
-		// TODO Auto-generated method stub
-		return 0;
+		return String.format("tipo_inmueble:%s,inmueble:%s,estado:%s,ubicacion:%s,tamaño:%.2f,precio:%.2f",getTipo_inmueble(),getTipo_Cons(),getEstadoCons(),getUbicacion(),getTamanio(),getPrecioTdecimal());
 	}
 	
+	
+	@Override
+	public int compareTo(Inmueble o) {
+		return o.getUbicacion().length();
+	}
+
+
 }

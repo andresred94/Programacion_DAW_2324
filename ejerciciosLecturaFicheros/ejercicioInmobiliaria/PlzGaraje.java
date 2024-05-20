@@ -3,7 +3,7 @@ package ejercicioInmobiliaria;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class PlzGaraje extends Superficie implements Serializable, Comparable<PlzGaraje>{
+public class PlzGaraje extends Superficie implements Serializable , Comparable <Inmueble>{
 	/**
 	 * 
 	 */
@@ -58,15 +58,11 @@ public class PlzGaraje extends Superficie implements Serializable, Comparable<Pl
 	@Override
 	public String toString() {
 //		return "tipo_inmueble:"+getTipo_inmueble()+",inmueble:"+super.getTipoSup()+",tipo_garaje:"+getTipoPlz()+",ubicacion:" + super.getUbicacion() +",tamaño:"+super.getTamanio()+",p_mcuadrado:"+super.getPreciomCuadrado()+ ",precio_total:"+super.getpTotal();
-		return String.format("%ntipo_inmueble:%s,inmueble:%s,tipo_garaje:%s,ubicacion:%s,tamaño:%s,precio_mcuadrado:%.2f,precio_total:%s%n",getTipo_inmueble(),super.getTipoSup(),getTipoPlz(),super.getUbicacion(),super.getTamanio(),super.getPreciomCuadrado(),super.getpTotal());
+		return String.format("tipo_inmueble:%s,inmueble:%s,tipo_garaje:%s,ubicacion:%s,tamaño:%s,precio_mcuadrado:%.2f,precio_total:%s",getTipo_inmueble(),super.getTipoSup(),getTipoPlz(),super.getUbicacion(),super.getTamanio(),super.getPreciomCuadrado(),super.getpTotal());
 	}
-
 
 	@Override
-	public int compareTo(PlzGaraje o) {
-		return o.hashCode();
+	public int compareTo(Inmueble o) {
+		return o.getUbicacion().length();
 	}
-	
-	
-
 }
