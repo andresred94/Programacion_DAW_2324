@@ -1,6 +1,13 @@
 package ejercicioInmobiliaria;
 
-public abstract class Construccion extends Inmueble{
+import java.io.Serializable;
+import java.util.Objects;
+
+public abstract class Construccion extends Inmueble implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private EST_CNSTRCN estadoCons;
 	private TP_CNSTRCN tipo_Cons;
 	enum TP_CNSTRCN {LOCAL,VIVIENDA};
@@ -30,6 +37,26 @@ public abstract class Construccion extends Inmueble{
 		super(inmu,ubi,mCuadrados,precio);
 		tipo_Cons = tipoConstruccion; 
 		estadoCons = estado_cons;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(estadoCons, tipo_Cons);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Construccion other = (Construccion) obj;
+		return estadoCons == other.estadoCons && tipo_Cons == other.tipo_Cons;
 	}
 
 	

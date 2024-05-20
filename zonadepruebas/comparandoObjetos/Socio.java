@@ -1,6 +1,12 @@
 package comparandoObjetos;
 
-public class Socio implements Comparable <Socio>{
+import java.io.Serializable;
+
+public class Socio implements Serializable, Comparable <Socio>{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//-->[ atributos ]<--//
 	private int id;
 	private String nombre;

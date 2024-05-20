@@ -3,7 +3,7 @@ package ejercicioInmobiliaria;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Inmueble implements Serializable {
+public abstract class Inmueble implements Serializable  {
 	/**
 	 * 
 	 */
@@ -98,5 +98,18 @@ public abstract class Inmueble implements Serializable {
 	public void inmueblesVenta(double pVenta) {}
 	public void localesSegundaMano(double mcuadrados) {}
 	public void solaresRusticos() {}
-
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Inmueble inmueble = (Inmueble) obj;
+        return Double.compare(inmueble.tamanio, tamanio) == 0 &&
+                ubicacion.equals(inmueble.ubicacion);
+	}
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
 }

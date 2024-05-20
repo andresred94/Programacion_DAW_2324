@@ -1,9 +1,8 @@
 package ejercicioInmobiliaria;
 
-public class Solar extends Superficie{
-	/**
-	 * 
-	 */
+import java.io.Serializable;
+
+public class Solar extends Superficie implements Serializable, Comparable <Solar>{
 	private static final long serialVersionUID = 1L;
 
 	enum TP_SLR {RUSTICO,URBANIZABLE}
@@ -30,6 +29,11 @@ public class Solar extends Superficie{
 	@Override
 	public String toString() {
 //		return "tipo_inmueble:"+getTipoSup()+ ",inmueble:"+super.getTipoSup()+",tipo_solar:"+getTipoS()+",ubicacion:"+super.getUbicacion()+",tamaño:"+super.getTamanio()+",precio_mCuadrado:"+super.getPreciomCuadrado() + ",precio_total:"+super.getpTotal();
-		return String.format("%ntipo_inmueble:%s,inmueble:%s,tipo_solar:%s,ubicacion:%s,tamaño:%.2f,precio_mcuadrado:%.2f,precio_total:%s ",getTipoSup(),super.getTipoSup(),getTipoS(),super.getUbicacion(),super.getTamanio(),super.getPreciomCuadrado(),super.getpTotal());
+		return String.format("%ntipo_inmueble:%s,inmueble:%s,tipo_solar:%s,ubicacion:%s,tamaño:%.2f,precio_mcuadrado:%.2f,precio_total:%s%n",getTipo_inmueble(),super.getTipoSup(),getTipoS(),super.getUbicacion(),super.getTamanio(),super.getPreciomCuadrado(),super.getpTotal());
+	}
+
+	@Override
+	public int compareTo(Solar o) {
+		return o.hashCode();
 	}	
 }

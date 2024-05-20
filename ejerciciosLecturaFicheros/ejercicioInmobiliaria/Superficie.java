@@ -1,6 +1,8 @@
 package ejercicioInmobiliaria;
 
-public abstract class Superficie extends Inmueble {
+import java.io.Serializable;
+
+public abstract class Superficie extends Inmueble implements Serializable{
 	/**
 	 * 
 	 */
@@ -50,5 +52,4 @@ public abstract class Superficie extends Inmueble {
 
    }
 
-	
-}
+}// fin class Superficie
