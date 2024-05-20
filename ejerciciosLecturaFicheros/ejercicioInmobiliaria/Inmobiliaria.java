@@ -37,8 +37,8 @@ public class Inmobiliaria extends Inmueble{
 		String nombreArchivo =  "inmuebles.dat";
 		String ruta = "\\..\\archivos\\nombArchi";
 		//TODO lectura de fichero
-		String ruta_escritura = ruta.replaceAll("nombArchi", nombreArchivo);
-		File fich_leer = new File(ruta_escritura);
+		String ruta_lectura = ruta.replaceAll("nombArchi", nombreArchivo);
+		File fich_leer = new File(ruta_lectura);
 //		System.out.println(ruta_escritura);
 		try (ObjectInputStream lecutra = new ObjectInputStream(new FileInputStream(fich_leer))) {
 			System.out.println("Leyendo datos...");

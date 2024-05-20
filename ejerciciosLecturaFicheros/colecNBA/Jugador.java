@@ -1,6 +1,12 @@
 package colecNBA;
 
-public class Jugador implements Comparable <Jugador> {
+import java.io.Serializable;
+
+public class Jugador implements Comparable <Jugador>, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//-->Atributos<--//
 	private String nombre;
 	private int edad;

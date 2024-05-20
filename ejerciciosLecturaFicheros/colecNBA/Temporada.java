@@ -5,8 +5,16 @@ import java.util.*;
 public class Temporada {
 	//--[ Atributos ]--//
 	//private LinkedList<Jugador> lista;
-	private Set<Jugador> lista;
+	private TreeSet<Jugador> lista;
 	
+	public TreeSet<Jugador> getLista() {
+		return lista;
+	}
+
+	public void setLista(TreeSet<Jugador> lista) {
+		this.lista = lista;
+	}
+
 	//--[ Constructores ]--//
 	public Temporada() {
 		//lista = new LinkedList<Jugador>();
