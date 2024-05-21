@@ -20,65 +20,50 @@ public class GestionHotel implements Serializable {
 	 */
 	static Scanner lector = new Scanner(System.in);
 	private static final long serialVersionUID = 1L;
-	TreeSet<Hotel> listaHotelesOrden;
+	TreeMap<Integer, Hotel> listaHotelesOrden;
 
 	public GestionHotel() {
-		 listaHotelesOrden = new TreeSet<Hotel>();
+		listaHotelesOrden = new TreeMap<Integer, Hotel>();
 	}
 
 	public void aniadirHotel(Hotel h) {
-		if (listaHotelesOrden.add(h)) {
-			System.out.println("Hotel añadido correctamente.");
-		} else {
+		if (listaHotelesOrden.put(h.getIdHotel(), h) != null) {
 			System.err.println("No se ha podido añadir el hotel.");
+		} else {
+			System.out.println("Hotel añadido correctamente.");
 		}
-
 	}
 
 	public void mostrarContenido() {
 		System.out.printf("Hay %d hoteles guardados.%n", listaHotelesOrden.size());
-//		Iterator it = listaHotelesOrden.iterator();
-//		while (it.hasNext()) {
-//			Hotel hs = (Hotel) it.next();
-//			System.out.println(hs.toString());
-//		}
-		for (Hotel hotel : listaHotelesOrden) {
-			System.out.println(hotel.toString());
+
+		// Imprimir el TreeMap
+		for (Map.Entry<Integer, Hotel> leerLista : listaHotelesOrden.entrySet()) {
+			System.out.println(leerLista.getValue().toString());
 		}
 	}
 
 	public void mostrarPorZona(ZONA zonaH) {
-		Iterator it = listaHotelesOrden.iterator();
-		while (it.hasNext()) {
-			Hotel hs = (Hotel) it.next();
-			if (hs.getZonaHotel().equals(zonaH)) {
-				System.out.println(hs.toString());
+		// Imprimir el TreeMap
+		for (Map.Entry<Integer, Hotel> entry : listaHotelesOrden.entrySet()) {
+			System.out.println("Clave: " + entry.getKey() + ", Valor: " + entry.getValue());
+			if (entry.getValue().getZonaHotel().equals(zonaH)) {
+//    			System.out.println( entry.getValue().toString());
+				System.out.println("Clave: " + entry.getKey() + ", Valor: " + entry.getValue());
 			}
-
 		}
 	}
 
 	public void eliminarHotelID(int id_hotel) {
-		Iterator it = listaHotelesOrden.iterator();
-		while (it.hasNext()) {
-			Hotel hs = (Hotel) it.next();
-
-			if (hs.getIdHotel() == id_hotel) {
-				listaHotelesOrden.remove(hs);
-				break;
-			}
-		}
+		listaHotelesOrden.remove(id_hotel);
 	}
 
 	public void menu() {
-		System.out.printf("%nEscoge una opción:%n"
-				+ "1) mostrar todos los hoteles.%n"
-				+ "2) mostrar hotel por zona.%n"
-				+ "3) eliminar hotel por id.%n"
-				+ "4) añadir hotel.%n"
-				+ "    [para salir ingresa -1] %n"
+		System.out.printf("%nEscoge una opción:%n" + "1) mostrar todos los hoteles.%n" + "2) mostrar hotel por zona.%n"
+				+ "3) eliminar hotel por id.%n" + "4) añadir hotel.%n" + "    [para salir ingresa -1] %n"
 				+ "ingresa una opción = ");
 	}
+
 	public static void main(String[] args) {
 		GestionHotel h1 = new GestionHotel();
 
@@ -88,13 +73,13 @@ public class GestionHotel implements Serializable {
 		String ruta = "\\..\\archivos\\nombArchi";
 		String ruta_lectura = ruta.replaceAll("nombArchi", nombreArchivo);
 		File fich_leer = new File(ruta_lectura);
-		
+
 		if (fich_leer.length() == 0) {
 			System.err.println("El archivo está vacio.");
 		} else {
 			try (ObjectInputStream lecutra = new ObjectInputStream(new FileInputStream(fich_leer))) {
 				System.out.println("Leyendo contenido del archivo...");
-				h1.listaHotelesOrden = (TreeSet<Hotel>) lecutra.readObject();
+				h1.listaHotelesOrden = (TreeMap<Integer, Hotel>) lecutra.readObject();
 
 				System.out.println("\033[42mFichero leido correctamente...\033[0m");
 			} catch (ClassNotFoundException e) {
@@ -106,21 +91,18 @@ public class GestionHotel implements Serializable {
 		} // fin if
 		int estado_ini = h1.listaHotelesOrden.size();
 		int opEs = 0;
-		//TODO menu	
+		// TODO menu
 		do {
 			h1.menu();
 			opEs = Integer.parseInt(lector.nextLine());
-			
+
 			switch (opEs) {
-			case 1://TODO mostrarContenido
+			case 1:// TODO mostrarContenido
 				h1.mostrarContenido();
 				break;
-			case 2://TODO mostrarPorZona
-				// Mostrar los hoteles en zona rural
-				System.out.printf("%n Escoge la zona:%n"
-						+ "1 = Rural%n"
-						+ "2 = Montaña%n"
-						+ "3 = Playa%n"
+			case 2:// TODO mostrarPorZona
+					// Mostrar los hoteles en zona rural
+				System.out.printf("%n Escoge la zona:%n" + "1 = Rural%n" + "2 = Montaña%n" + "3 = Playa%n"
 						+ "ingresa una opción = ");
 				int opZona = Integer.parseInt(lector.nextLine());
 				switch (opZona) {
@@ -137,8 +119,8 @@ public class GestionHotel implements Serializable {
 					System.err.println("Error : Zona escogida no válida.");
 					break;
 				}// switch opZona
-				break; //case 2
-			case 3://TODO eliminar por id_hotel
+				break; // case 2
+			case 3:// TODO eliminar por id_hotel
 				System.out.print("ingresa un id de hotel = ");
 				int id_hotel = Integer.parseInt(lector.nextLine());
 				System.out.printf("%n Eliminando el hotel en zona rural con id %d %n", id_hotel);
@@ -148,34 +130,31 @@ public class GestionHotel implements Serializable {
 				int ult_id = h1.listaHotelesOrden.size();
 				ult_id++;
 				System.out.print("ingresa el precio del hotel = ");
-				double p_in = Double.parseDouble(lector.nextLine()); 
-				
+				double p_in = Double.parseDouble(lector.nextLine());
+
 				// Mostrar los hoteles en zona rural
-				System.out.printf("%n Escoge la zona:%n"
-						+ "1 = Rural%n"
-						+ "2 = Montaña%n"
-						+ "3 = Playa%n"
+				System.out.printf("%n Escoge la zona:%n" + "1 = Rural%n" + "2 = Montaña%n" + "3 = Playa%n"
 						+ "ingresa una opción = ");
 				int opZona_aniadir = Integer.parseInt(lector.nextLine());
-				
+
 				switch (opZona_aniadir) {
 				case 1:
-					Hotel nh1 = new Hotel(ult_id,ZONA.RURAL,p_in);
+					Hotel nh1 = new Hotel(ult_id, ZONA.RURAL, p_in);
 					h1.aniadirHotel(nh1);
 					break;
 				case 2:
-					Hotel nh2 = new Hotel(ult_id,ZONA.MONTANA,p_in);
+					Hotel nh2 = new Hotel(ult_id, ZONA.MONTANA, p_in);
 					h1.aniadirHotel(nh2);
 					break;
 				case 3:
-					Hotel nh3 = new Hotel(ult_id,ZONA.PLAYA,p_in);
+					Hotel nh3 = new Hotel(ult_id, ZONA.PLAYA, p_in);
 					h1.aniadirHotel(nh3);
 					break;
 				default:
 					System.err.println("Error : Zona escogida no válida.");
 					break;
 				}
-				break;//case 4
+				break;// case 4
 			case -1:
 				System.err.printf("%n\033[0;36mSaliendo...\033[0m%n");
 				break;
@@ -183,10 +162,9 @@ public class GestionHotel implements Serializable {
 				System.err.println("Error: opción escogido no válida.");
 				break;
 			}
-			
-			
+
 		} while (opEs != -1);
-		
+
 		int estado_fin = h1.listaHotelesOrden.size();
 		if (estado_fin == estado_ini) {
 			System.out.println("El contenido no ha sido modificado.");
@@ -204,12 +182,10 @@ public class GestionHotel implements Serializable {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
-			}	
+			}
 
 		}
-		
-		
-		
+
 	}
 
 }
