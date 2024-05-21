@@ -1,6 +1,12 @@
 package examen2604;
 
-public class Hotel implements Comparable<Hotel> {
+import java.io.Serializable;
+
+public class Hotel implements Comparable<Hotel> , Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int idHotel = 0;
 	private ZONA zonaHotel;
 	private double precio;
@@ -50,11 +56,13 @@ public class Hotel implements Comparable<Hotel> {
 
 	@Override
 	public int compareTo(Hotel o) {
-		int rsp;
-		rsp = (int)(this.precio - o.precio);
-		if (rsp == 0) {
-			rsp = this.idHotel - o.idHotel;
-		}
-		return rsp;
+//		int rsp;
+////		rsp = (int)(this.precio - o.precio);
+////		if (rsp == 0) {
+////			rsp = this.idHotel - o.idHotel;
+////		}
+//		rsp = this.idHotel - o.idHotel;
+
+		return Integer.compare(this.idHotel, o.idHotel);
 	};
 }

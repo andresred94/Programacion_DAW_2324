@@ -33,10 +33,10 @@ public class Inmobiliaria extends Inmueble{
         Locale.setDefault(Locale.US);
 		TreeSet <Inmueble> datos_inmu = new TreeSet <Inmueble>();
 		Inmobiliaria ex1 = new Inmobiliaria();
-		
+
+		//TODO lectura de fichero
 		String nombreArchivo =  "inmuebles.dat";
 		String ruta = "\\..\\archivos\\nombArchi";
-		//TODO lectura de fichero
 		String ruta_lectura = ruta.replaceAll("nombArchi", nombreArchivo);
 		File fich_leer = new File(ruta_lectura);
 //		System.out.println(ruta_escritura);
