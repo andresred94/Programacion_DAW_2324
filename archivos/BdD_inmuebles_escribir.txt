@@ -1,0 +1,2 @@
+
+tipo_inmueble:CONSTRUCCION,inmueble:LOCAL,estado:NUEVO,ubicacion:calle local 1,tamaño:100.00,precio:1.00 

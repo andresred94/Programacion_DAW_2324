@@ -1,0 +1,1 @@
+tipo_inmueble:CONSTRUCCION,inmueble:VIVIENDA,tipo_vivienda:CHALET,estado:NUEVA,ubicación:Francia,tamaño:500.55,n_habitaciones:3,precio_total:1222.33,n_pisos:2tipo_inmueble:CONSTRUCCION,inmueble:VIVIENDA,tipo_vivienda:CHALET,estado:NUEVA,ubicación:Francia,tamaño:500.55,n_habitaciones:3,precio_total:1222.33,n_pisos:2

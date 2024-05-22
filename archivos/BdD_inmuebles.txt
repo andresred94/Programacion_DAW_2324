@@ -1,0 +1,1 @@
+tipo_inmueble:CONSTRUCCION,inmueble:LOCAL,estado:NUEVO,ubicacion:local nv1,tamaño:10.00,precio:1.00

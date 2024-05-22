@@ -1,0 +1,3 @@
+Perro,Tikala,Mastin,40,Negro
+Gato,Lilo,Persa,20,Tricolor
+Gato,Garfield,Siames,20,Pelirrojo
