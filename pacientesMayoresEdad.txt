@@ -1,0 +1,5 @@
+12345678p,Elena,Lopez,2001,65
+87654321t,Elena,Torres,1990,67
+33333333v,Julieta,Guzman,1998,60
+76539082n,Santiago,Calleja,2002,67
+87654322q,Sonia,Guzman,2000,68

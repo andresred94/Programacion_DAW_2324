@@ -1,6 +1,6 @@
 package basedeDatosEmpleados;
 
-public class Empleado {
+public class Empleados {
 	private int id_empleado;
 	private String nombre;
 	private String apellido;
@@ -14,11 +14,11 @@ public class Empleado {
 	private String id_departamento;
 	
 	
-	public Empleado() {
+	public Empleados() {
 		super();
 	}
 		
-	public Empleado(int id_empleado, String nombre, String apellido, String email, String telefono,
+	public Empleados(int id_empleado, String nombre, String apellido, String email, String telefono,
 			String fecha_contratacion, String id_trabajo, double salario, double comision, String id_director,
 			String id_departamento) {
 		super();
@@ -109,5 +109,4 @@ public class Empleado {
 		return String.format("%d,%s,%s,%s,%s,%s,%s,%.2f,%.2f,%s,%s",getId_empleado(),getNombre(),getApellido(),getEmail(),getTelefono(),getFecha_contratacion(),getId_trabajo(),getSalario(),getComision(),getId_director(),getId_departamento());
 	}
 	
-	
-}
+}// fin-class Empleados
