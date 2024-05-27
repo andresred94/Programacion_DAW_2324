@@ -25,7 +25,11 @@ public class Ejercicio1 {
 		datosPersona.put(6, a2);
 		
 		for (Map.Entry<Integer, Persona> entry : datosPersona.entrySet()) {
-			entry.getValue().mostrarDatos();	
+			if (entry.getValue() instanceof Paciente) {
+				System.err.println("Por privacidad no se muestran los datos de los pacientes.");
+			} else {
+				entry.getValue().mostrarDatos();
+			}
 		}
 		
 	}

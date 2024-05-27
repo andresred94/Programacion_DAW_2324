@@ -20,22 +20,6 @@ public class Ejercicio3 {
 	public static void main(String[] args) {
 
 		TreeMap<String, Persona> datos_leidos = new TreeMap<String, Persona>();
-		// Demostrando que se han guardado correctamente
-
-		File archivo_leido = new File(ruta.replaceAll("nombArchi", "trabajadores.dat"));
-
-		try (ObjectInputStream leer = new ObjectInputStream(new FileInputStream(archivo_leido))) {
-			datos_leidos = (TreeMap<String, Persona>) leer.readObject();
-			System.out.println("Archivo leido correctamente...");
-		} catch (EOFException e) {
-			System.err.println("Error : el archivo no existe.");
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
- 
-		for (Map.Entry<String, Persona> entry : datos_leidos.entrySet()) {
-//			System.out.println(entry.getValue().toString());
-		}
 
 		// Leer datos pacientes
 		ArrayList<Paciente> datos_pacientes = new ArrayList<Paciente>();
@@ -51,16 +35,19 @@ public class Ejercicio3 {
 			}
 			lineas = linea.split("\\R");
 			for (String fila : lineas) {
-				String [] campos = fila.split(",");
-				datos_pacientes.add(new Paciente(campos[0],campos[1],campos[2],Integer.parseInt(campos[3]),Integer.parseInt(campos[4])));
+				String[] campos = fila.split(",");
+				datos_pacientes.add(new Paciente(campos[0], campos[1], campos[2], Integer.parseInt(campos[3]),
+						Integer.parseInt(campos[4])));
+
+				datos_leidos.put(campos[0], new Paciente(campos[0], campos[1], campos[2], Integer.parseInt(campos[3]),
+						Integer.parseInt(campos[4])));
 			}
 			System.out.println("Mostrando pacientes por orden:");
-			datos_pacientes.sort( new CompararNombreApellidoPaciente() );
+			datos_pacientes.sort(new CompararNombreApellidoPaciente());
 			for (Paciente p : datos_pacientes) {
 				p.mostrarDatos();
 			}
-			
-			
+
 			System.out.println("Guardando los pacientes mayores de edad.");
 			for (Paciente p : datos_pacientes) {
 				int anio_actual = 2024;
@@ -72,7 +59,7 @@ public class Ejercicio3 {
 					int anio_naci = p.getAnio_nacimiento();
 					int peso = p.getPeso();
 					String escr_linea = "";
-					escr_linea = escr_linea.concat(String.format("%s,%s,%s,%d,%d",dni,nombre,ape,anio_naci,peso));
+					escr_linea = escr_linea.concat(String.format("%s,%s,%s,%d,%d", dni, nombre, ape, anio_naci, peso));
 					for (int i = 0; i < escr_linea.length(); i++) {
 						char d = escr_linea.charAt(i);
 						escribir.write(d);
@@ -96,6 +83,23 @@ public class Ejercicio3 {
 			System.out.println("Datos guardados correctamente...");
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+
+		// Demostrando que se han guardado correctamente
+		File archivo_leido = new File(ruta.replaceAll("nombArchi", "trabajadores.dat"));
+
+		try (ObjectInputStream leer = new ObjectInputStream(new FileInputStream(archivo_leido))) {
+			datos_leidos = (TreeMap<String, Persona>) leer.readObject();
+			System.out.println("Archivo leido correctamente...");
+		} catch (EOFException e) {
+			System.err.println("Error : el archivo no existe.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		System.out.println("Mostrando datos del contenido leido:");
+		for (Map.Entry<String, Persona> entry : datos_leidos.entrySet()) {
+			entry.getValue().mostrarDatos();
 		}
 
 	}

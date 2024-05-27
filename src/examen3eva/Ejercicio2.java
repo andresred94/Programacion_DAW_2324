@@ -50,7 +50,7 @@ public class Ejercicio2 {
 
 			switch (op) {
 			case 1:
-				System.out.println("Mostrando datos SOLO de trabajadores.");
+				System.out.printf("Mostrando datos SOLO de trabajadores. [ %s ] %n",datosPersona.size());
 				for (Map.Entry<Integer, Persona> entry : datosPersona.entrySet()) {
 					entry.getValue().mostrarDatos();
 				}
@@ -83,7 +83,7 @@ public class Ejercicio2 {
 				}
 				break;
 			case 3:
-				System.out.println("Mostrando datos de trabajadores ordenador por apellido y nombre.");
+				System.out.println("Mostrando datos de trabajadores ordenado por apellido y nombre.");
 				List<Persona> datosOrdenados = new ArrayList<>(datosPersona.values());
 				datosOrdenados.sort( new CompararApellidoTrabajador());
 				

@@ -1,15 +1,10 @@
 package examen3eva;
 
-import java.io.Serializable;
 import java.util.Comparator;
 
-public class Paciente extends Persona implements Serializable , Comparator<Paciente>{
+public class Paciente extends Persona implements Comparator<Paciente>{
 
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2808360634101833831L;
 	private int peso;
 
 	
