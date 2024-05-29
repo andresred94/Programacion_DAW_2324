@@ -1,6 +1,6 @@
 package examen3eva;
 
-public class Dentista extends Trabajador{
+public class Dentista extends Trabajador {
 	/**
 	 * 
 	 */
@@ -15,19 +15,19 @@ public class Dentista extends Trabajador{
 		this.num_colegiado = num_colegiado;
 	}
 
-	public Dentista(String dni,String nom,String ape, int f_naci, int num_exp, int num_colegiado) {
-		super(dni,nom,ape,f_naci,num_exp);
+	public Dentista(String dni, String nom, String ape, int f_naci, int num_exp, int num_colegiado) {
+		super(dni, nom, ape, f_naci, num_exp);
 		this.num_colegiado = num_colegiado;
 	}
 
 	public Dentista() {
 		super();
 	}
-	
+
 	@Override
 	public void mostrarDatos() {
-		System.out.println(String.format("%s,%s,%s,%s.%d,%d",getDni(),getNombre(),getApellidos(),getAnio_nacimiento(),getExpendiente(),getNum_colegiado()));
+		System.out.println(String.format("%s,%s,%s,%s,%d,%d", getDni(), getNombre(), getApellidos(),
+				getAnio_nacimiento(), getExpendiente(), getNum_colegiado()));
 	}
-	
-	
-}
+
+}// fin-class Dentista

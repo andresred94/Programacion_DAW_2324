@@ -1,6 +1,7 @@
 package basedeDatosEmpleados;
 
-public class Empleados {
+
+public class Empleados implements Comparable <Empleados>{
 	private int id_empleado;
 	private String nombre;
 	private String apellido;
@@ -107,6 +108,11 @@ public class Empleados {
 	@Override
 	public String toString() {
 		return String.format("%d,%s,%s,%s,%s,%s,%s,%.2f,%.2f,%s,%s",getId_empleado(),getNombre(),getApellido(),getEmail(),getTelefono(),getFecha_contratacion(),getId_trabajo(),getSalario(),getComision(),getId_director(),getId_departamento());
+	}
+
+	@Override
+	public int compareTo(Empleados o) {
+		return Double.compare(this.id_empleado, o.getId_empleado());
 	}
 	
 }// fin-class Empleados

@@ -26,11 +26,9 @@ public class Compositor {
 		this.nomb_ape = nomb_ape;
 		this.nacionalidad = nacionalidad;
 	}
-	@Override
-	public String toString() {
+	
+	public String mostrarDatos() {
 		return String.format("%d,%s,%s%s",getId_com(),getNomb_com(),getNomb_ape(),getNacionalidad());
 	}
-	
-	
 	
 }// fin-class Compositor

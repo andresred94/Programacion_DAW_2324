@@ -16,7 +16,8 @@ public class Ejercicio1 {
 
 		Auxiliar a1 = new Auxiliar("11122233Q", "AuxiliarAAAB", "Abbc", 1992,003, 'E');
 		Auxiliar a2 = new Auxiliar("11122233Q", "AuxiliarAAB", "Abbac", 1952,004, 'H');
-
+		
+		// put (<key , value) - para ingresar un valor en un TreeMap tiene que tiener una clave primaria
 		datosPersona.put(1, p1);
 		datosPersona.put(2, p2);
 		datosPersona.put(3, d1);
@@ -24,6 +25,7 @@ public class Ejercicio1 {
 		datosPersona.put(5, a1);
 		datosPersona.put(6, a2);
 		
+		// entrySet() - obtienes una vista de los valores del objeto [ como una sentencia SELECT ]
 		for (Map.Entry<Integer, Persona> entry : datosPersona.entrySet()) {
 			if (entry.getValue() instanceof Paciente) {
 				System.err.println("Por privacidad no se muestran los datos de los pacientes.");
@@ -32,5 +34,5 @@ public class Ejercicio1 {
 			}
 		}
 		
-	}
-}
+	}// fin main
+}// fin class - Ejercicio1

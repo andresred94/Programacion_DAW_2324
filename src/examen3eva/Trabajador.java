@@ -1,6 +1,6 @@
 package examen3eva;
 
-public class Trabajador extends Persona  {
+public class Trabajador extends Persona {
 	/**
 	 * 
 	 */
@@ -15,19 +15,17 @@ public class Trabajador extends Persona  {
 		this.expendiente = expendiente;
 	}
 
-	
-	
 	public Trabajador(String dni, String nom, String ape, int f_naci) {
-		super(dni,nom,ape,f_naci);
+		super(dni, nom, ape, f_naci);
 	}
 
 	public Trabajador(String dni, String nom, String ape, int f_naci, int expendiente) {
-		super(dni,nom,ape,f_naci);
+		super(dni, nom, ape, f_naci);
 		this.expendiente = expendiente;
 	}
 
 	public Trabajador() {
 		super();
 	}
-	
-}
+
+}// fin-class Trabajador

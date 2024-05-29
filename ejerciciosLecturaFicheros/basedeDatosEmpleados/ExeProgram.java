@@ -4,10 +4,16 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.TreeMap;
 
+import manejoFicheros.ejercicio1.Listar;
+
 public class ExeProgram {
+	static Scanner lector = new Scanner(System.in);
 	static String ruta = "archivos\\BdD_empleados\\nombArchi";
 
 	TreeMap<Integer, Empleados> csv_empleados = new TreeMap<Integer, Empleados>();
@@ -30,9 +36,7 @@ public class ExeProgram {
 
 		try (BufferedReader leer_empleados = new BufferedReader(new FileReader(fich_csv_empleados));
 				BufferedReader leer_departamentos = new BufferedReader(new FileReader(fich_csv_departamentos))) {
-//		while ((linea = leer.readLine()) != null) {
-//			contenido_raw.add(linea);
-//		}
+
 			int c;
 			while ((c = leer_empleados.read()) != -1) {
 				char car = (char) c;
@@ -91,16 +95,62 @@ public class ExeProgram {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			// TODO: handle exception
 		}
-		// imprimir datos empleados
-
-//		for (Map.Entry<Integer, Empleado> entry : exe1.csv_empleados.entrySet()) {
-//			System.out.println(entry.getValue().toString());			
-//		}
 
 		System.err.printf("numero de empleados %d %n", exe1.csv_empleados.size());
 		System.err.printf("numero de departamentos %d %n", exe1.csv_departamentos.size());
+		
+		int op = 0;
+		do {
+			System.out.printf(" Escoge una opción:%n"
+					+ " 1) ordenar alfabeticamente por apellido y a igual apellido, ordenar por nombre [Comparator].%n"
+					+ " 2) ordenar por id_empleado de menor a mayor( orden natural ) [Comparable].%n"
+					+ " 3) ordenar por id_departamento [Comparator]%n"
+					+ "  [ para salir ingresa 0] %n"
+					+ " ingresa una opción = ");
+			op = Integer.parseInt(lector.nextLine());
+			
+			switch (op) {
+			case 1:
+			List <Empleados> empleados_ordenados = new ArrayList<>(exe1.csv_empleados.values());
+			empleados_ordenados.sort( new CompararApellidoNombreEmpleado());
+			
+			for (Empleados em : empleados_ordenados) {
+				System.out.println(em.toString());
+			}
+				break;
+				
+			case 2:
+			List <Empleados> empleados_orden_natural = new ArrayList<>(exe1.csv_empleados.values());
+			Collections.sort(empleados_orden_natural);
+			
+			for (Empleados emp : empleados_orden_natural) {
+				System.out.println(emp.toString());
+			}
+
+				break;
+				
+			case 3:
+			List <Empleados> empleados_orden_depa = new ArrayList(exe1.csv_empleados.values());
+			
+			empleados_orden_depa.sort(new CompararIDdepartamentoEmpleado());
+			
+			for (Empleados emp : empleados_orden_depa) {
+				System.out.println(emp.getId_trabajo());
+			}
+				
+				break;
+
+			case 0:
+				System.out.println("Saliendo...");
+				
+				break;
+			default:
+				System.err.println("Error : No has introducido una opción válida.");
+				break;
+			}
+			
+		} while (op != 0);
 
 	}
 

@@ -2,19 +2,20 @@ package examen3eva;
 
 import java.util.Comparator;
 
-public class Paciente extends Persona implements Comparator<Paciente>{
+public class Paciente extends Persona implements Comparator<Paciente> {
 
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int peso;
 
-	
-	
 	public Paciente() {
 		super();
 	}
 
-	public Paciente(String dni, String nombre,String apellidos, int anio_nacimiento,int peso) {
-		super(dni,nombre,apellidos,anio_nacimiento);
+	public Paciente(String dni, String nombre, String apellidos, int anio_nacimiento, int peso) {
+		super(dni, nombre, apellidos, anio_nacimiento);
 		this.peso = peso;
 	}
 
@@ -27,8 +28,8 @@ public class Paciente extends Persona implements Comparator<Paciente>{
 	}
 
 	public void mostrarDatos() {
-		System.out.println(String.format("%s,%s,%s,%d,%d",getDni(),getApellidos(),getNombre(),getAnio_nacimiento(),getPeso()));
-//		System.out.println("Lo sentimos por la ley de protección de datos no podemos mostrar datos personales de los pacientes");
+		System.out.println(String.format("%s,%s,%s,%d,%d", getDni(), getApellidos(), getNombre(), getAnio_nacimiento(),
+				getPeso()));
 	}
 
 	@Override
@@ -39,6 +40,5 @@ public class Paciente extends Persona implements Comparator<Paciente>{
 		}
 		return rsp;
 	}
-	
-	
-}
+
+}// fin-class Paciente

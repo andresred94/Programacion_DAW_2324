@@ -1,7 +1,11 @@
-package examen3eva;
+	package examen3eva;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -11,23 +15,21 @@ import java.util.TreeMap;
 public class Ejercicio2 {
 	static Scanner lector = new Scanner(System.in);
 	public static void main(String[] args) {
+		TreeMap <Integer , Persona> datosCopiados = new TreeMap<Integer , Persona>();
 		TreeMap <Integer , Persona> datosPersona = new TreeMap<Integer , Persona>();
 		
-		Paciente p1 = new Paciente("12312312Q", "Alex", "Cremento", 1984, 60);
-		Paciente p2 = new Paciente("11122233R", "Dolores", "Delano", 1984, 20);
-
+		// crearción de los objetos
 		Dentista d1 = new Dentista("52053342H", "Isabel", "Garcia", 1993, 1, 445789);
-		Dentista d2 = new Dentista("11112222B", "Zacarías", "Álvarez", 1994, 2, 445789);
-		Dentista d3= new Dentista("11112222C", "Sofía", "Quintana", 1994, 3, 445789);
-		Dentista d4 = new Dentista("11112222D", "Alejandro", "Torres", 1994, 4, 445789);
+		Dentista d2 = new Dentista("52052342B", "Zacarías", "Álvarez", 1994, 2, 445789);
+		Dentista d3= new Dentista("52053342C", "Sofía", "Quintana", 1994, 3, 445789);
+		Dentista d4 = new Dentista("52054342D", "Alejandro", "Torres", 1994, 4, 445789);
 
-		Auxiliar a1 = new Auxiliar("11122233Q", "Diana", "Urrutia", 1992, 5, 'E');
-		Auxiliar a2 = new Auxiliar("11122233Q", "Andrés", "Bravo", 1992, 6, 'H');
-		Auxiliar a3 = new Auxiliar("11122233Q", "Manuel", "Bravo", 1992, 7, 'J');
-		Auxiliar a4 = new Auxiliar("11122233Q", "Oscar", "Bustamante", 1992, 8, 'H');
+		Auxiliar a1 = new Auxiliar("52053353Q", "Diana", "Urrutia", 1992, 5, 'E');
+		Auxiliar a2 = new Auxiliar("52053342K", "Andrés", "Bravo", 1992, 6, 'H');
+		Auxiliar a3 = new Auxiliar("52053373A", "Manuel", "Bravo", 1992, 7, 'J');
+		Auxiliar a4 = new Auxiliar("52053383J", "Oscar", "Bustamante", 1992, 8, 'H');
 
-		datosPersona.put(1, p1);
-		datosPersona.put(2, p2);
+		// ingresamos los objetos en el TreeMap
 		datosPersona.put(3, d1);
 		datosPersona.put(4, d2);
 		datosPersona.put(5, d3);
@@ -50,11 +52,12 @@ public class Ejercicio2 {
 
 			switch (op) {
 			case 1:
-				System.out.printf("Mostrando datos SOLO de trabajadores. [ %s ] %n",datosPersona.size());
+				System.out.printf("Mostrando datos de trabajadores. [ %s ] %n",datosPersona.size());
 				for (Map.Entry<Integer, Persona> entry : datosPersona.entrySet()) {
 					entry.getValue().mostrarDatos();
 				}
 				break;
+				
 			case 2:
 				System.out.print("Ingresa el año = ");
 				int anio_in = Integer.parseInt(lector.nextLine());
@@ -65,6 +68,7 @@ public class Ejercicio2 {
 					System.out.printf("  Eliminando trabajadores que nacieron el año %s.%n", anio_in);
 					boolean eliminado = false;
 					
+					// para eliminar un valor del TreeMap es necesario un Iterator
 					Iterator <Map.Entry <Integer , Persona >> it  = datosPersona.entrySet().iterator();
 					
 					while (it.hasNext()) {
@@ -82,8 +86,9 @@ public class Ejercicio2 {
 					System.err.println(e.getMessage());
 				}
 				break;
+				
 			case 3:
-				System.out.println("Mostrando datos de trabajadores ordenado por apellido y nombre.");
+				System.out.printf("Mostrando datos de trabajadores ordenado por apellido y nombre. [ %d ]%n" , datosPersona.size());
 				List<Persona> datosOrdenados = new ArrayList<>(datosPersona.values());
 				datosOrdenados.sort( new CompararApellidoTrabajador());
 				
@@ -93,22 +98,43 @@ public class Ejercicio2 {
 					}
 				}					
 				break;
+
 			case 4:
-				String dni_in = "52053342H";
+				System.out.print("Ingresa un dni válido = ");
+				String dni_in = lector.nextLine();
 				System.out.printf("Modificando el Dentista con dni %s.%n", dni_in);
 			
 				for (Map.Entry<Integer, Persona> entry : datosPersona.entrySet()) {
 					if (entry.getValue() instanceof Dentista) {
 						if (entry.getValue().getDni().equals(dni_in)) {
+							// obtenemos los números del DNI
 							int num_dni = Integer.parseInt(dni_in.substring(0, 8));
 							Dentista d = (Dentista) entry.getValue();
+							// actualizamos el número de expediente
 							d.setExpendiente(num_dni);
 						}
 					}
 				}
 				break;
+				
 			case 0:
-				System.out.println("Saliendo...");
+				System.out.println("Guardando datos en un archivo...");
+				File trabajadores = new File("trabajadores.dat");
+								
+				try (ObjectOutputStream escribir = new ObjectOutputStream(new FileOutputStream(trabajadores));
+						ObjectInputStream leer = new ObjectInputStream(new FileInputStream(trabajadores))) {
+					if (trabajadores.exists()) {
+						datosCopiados = (TreeMap<Integer , Persona>)leer.readObject();
+						
+					}else {
+						escribir.writeObject(datosPersona);
+						System.out.printf("%nDatos guardados correctamente...%n");
+					}
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
 				break;
 			default:
 				System.err.println("Error : No has introducido un opción válida.");
@@ -116,5 +142,6 @@ public class Ejercicio2 {
 			}
 
 		} while (op != 0);
+		
 	}
-}
+}// fin-class Ejercicio2
